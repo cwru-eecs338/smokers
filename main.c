@@ -4,7 +4,7 @@ int main ()
 {
     FILE *fp;
     int semid,shmid,pid1,pid2,pid3,pid4;
-    short seminit[NUM_SEMS];
+    unsigned short seminit[NUM_SEMS];
     struct common *shared;
     union semun semctlarg;
 
@@ -23,15 +23,19 @@ int main ()
 
     if ((pid1=fork())==0) {
 	execl("agent.bin","agent",0);
+	exit(EXIT_SUCCESS);
 	}
     else if ((pid2=fork())==0) {
 	execl("smoker.bin","smoker","0",0);
+	exit(EXIT_SUCCESS);
 	}
     else if ((pid3=fork())==0) {
         execl("smoker.bin","smoker","1",0);
+	exit(EXIT_SUCCESS);
 	}
     else if ((pid4=fork())==0) {
 	execl("smoker.bin","smoker","2",0);
+	exit(EXIT_SUCCESS);
 	};
 
     fp=fopen("smokers.kill","w");

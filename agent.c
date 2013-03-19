@@ -13,9 +13,7 @@ int main ()
 {
     int semid, shmid;
     struct common *shared;
-    struct timeval tp;
     int loop;
-    short item;
 
     int mypid=getpid();
     srand(mypid);
