@@ -1,4 +1,4 @@
-#include "hw4.h"
+#include "main.h"
 
 main ()
 {
