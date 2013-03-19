@@ -9,7 +9,7 @@ int rand0to2 ()
     return (int)randval;
 }
 
-main ()
+int main ()
 {
     int semid, shmid;
     struct common *shared;

@@ -1,6 +1,6 @@
 #include "main.h"
 
-main (int argc, char *argv[])
+int main (int argc, char *argv[])
 {
     int semid, shmid;
     struct common *shared;

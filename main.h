@@ -1,5 +1,7 @@
 #include <signal.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
 #include <sys/types.h>
 #include <sys/ipc.h>
 #include <sys/sem.h>
@@ -7,6 +9,7 @@
 #include <sys/errno.h>
 #include <sys/time.h>
 #include <time.h>
+#include <sys/wait.h>
 
 #define SEMKEY 77
 #define SHMKEY 77
@@ -67,3 +70,11 @@ void writeitem(int item)
     };
     return;
 }
+
+union semun {
+	int val;	/* value for SETVAL */
+	struct semid_ds *buf;	/* buffer for IPC_STAT, IPC_SET */
+	unsigned short *array;	/* array for GETALL, SETALL */
+	/* Linux specific part: */
+	struct seminfo *__buf;	/* buffer for IPC_INFO */            
+};
