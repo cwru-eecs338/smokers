@@ -25,56 +25,60 @@
 #define K 1024
 
 struct common {
-    int item1;
-    int item2;
-    long lastwrite;
-    long lastwriteu;
-    int agentpid;
-    int smokerpid;
+	int item1;
+	int item2;
+	long lastwrite;
+	long lastwriteu;
+	int agentpid;
+	int smokerpid;
 };
 
 void P(int semid, int semaphore)
 {
-    struct sembuf psembuf;
+	struct sembuf psembuf;
 
-    psembuf.sem_op = -1;
-    psembuf.sem_flg = 0;
-    psembuf.sem_num = semaphore;
-    semop(semid,&psembuf,1);
-    return;
+	psembuf.sem_op = -1;
+	psembuf.sem_flg = 0;
+	psembuf.sem_num = semaphore;
+	semop(semid,&psembuf,1);
+	return;
 }
 
 void V(int semid, int semaphore)
 {
-    struct sembuf vsembuf;
+	struct sembuf vsembuf;
 
-    vsembuf.sem_op = 1;
-    vsembuf.sem_flg = 0;
-    vsembuf.sem_num = semaphore;
-    semop(semid,&vsembuf,1);
-    return;
+	vsembuf.sem_op = 1;
+	vsembuf.sem_flg = 0;
+	vsembuf.sem_num = semaphore;
+	semop(semid,&vsembuf,1);
+	return;
 }
 
 void writeitem(int item)
 {
-    switch (item) {
-    	case TOBACCO:
-    	    printf("tobacco");
-    	    break;
-    	case MATCHES:
-    	    printf("matches");
-    	    break;
-    	case PAPER:
-    	    printf("paper");
-    	    break;
-    };
-    return;
+	switch (item) {
+		case TOBACCO:
+			printf("tobacco");
+			break;
+		case MATCHES:
+			printf("matches");
+			break;
+		case PAPER:
+			printf("paper");
+			break;
+	};
+	return;
 }
 
 union semun {
-	int val;	/* value for SETVAL */
-	struct semid_ds *buf;	/* buffer for IPC_STAT, IPC_SET */
-	unsigned short *array;	/* array for GETALL, SETALL */
+	/* value for SETVAL */
+	int val;
+	/* buffer for IPC_STAT, IPC_SET */
+	struct semid_ds *buf;
+	/* array for GETALL, SETALL */
+	unsigned short *array;
 	/* Linux specific part: */
-	struct seminfo *__buf;	/* buffer for IPC_INFO */            
+	/* buffer for IPC_INFO */
+	struct seminfo *__buf;
 };
