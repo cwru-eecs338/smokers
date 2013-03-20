@@ -14,7 +14,7 @@ int main ()
 	semctlarg.array = seminit;
 	semctl(semid, NUM_SEMS, SETALL, semctlarg);
 
-	shmid = shmget(SHMKEY, 1*K, 0777 | IPC_CREAT);
+	shmid = shmget(SHMKEY, sizeof(struct common), 0777 | IPC_CREAT);
 	shared=(struct common *)shmat(shmid, 0, 0);
 	shared->item1 = 0;
 	shared->item2 = 0;

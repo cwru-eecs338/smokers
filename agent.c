@@ -19,7 +19,7 @@ int main ()
 	srand(mypid);
 
 	semid = semget(SEMKEY, NUM_SEMS, 0777);
-	shmid = shmget(SHMKEY, 1*K, 0777);
+	shmid = shmget(SHMKEY, 0, 0);
 	shared = (struct common *)shmat(shmid, 0, 0);
 
 	for (loop = 1; loop < 15; loop++) {

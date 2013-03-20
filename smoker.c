@@ -9,8 +9,8 @@ int main(int argc, char *argv[])
 	int smokernum = atoi(argv[1]);
 
 	semid = semget(SEMKEY, NUM_SEMS, 0777);
-	shmid = shmget(SHMKEY, 1*K, 0777);
-	shared = (struct common *)shmat(shmid, 0,0);
+	shmid = shmget(SHMKEY, 0, 0);
+	shared = (struct common *)shmat(shmid, 0, 0);
 
 	while (1) {
 		P(semid, SEM_SMOKER);
